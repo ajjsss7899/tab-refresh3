@@ -128,7 +128,7 @@ function tab(){
                 var urlChk = new RegExp('[?&]'+paramName+'\\s*=');
                 var urlChk2 = new RegExp('(?:([?&])'+paramName+'\\s*=[^?&]*)')
                 newUrl = oldUrl.replace(urlChk2, "$1"+paramName+"=off");
-                //history.pushState(null, null, newUrl);
+                history.pushState(null, null, newUrl);
             }
         }
     }else{ //파라미터 값이 없으면 active 클래스 기준으로 탭메뉴 선택
