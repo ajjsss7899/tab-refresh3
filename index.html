@@ -110,27 +110,7 @@ function tab(){
         $('.tab_wrap .tit_list > li a[href="#'+getParam+'"]').parent().addClass('active'); 
         $('.tab_wrap .tit_list > li a[href="#'+getParam+'"]').trigger('click');
 
-        if(loadChk == 'on'){ //처음 로드되었으면 스크롤 이동
-            //탭 위치로 이동
-            var tabTop = $('.tab_wrap').offset().top;
-            $(window).scrollTop(tabTop - 100);
-
-            //파라미터 확인
-            var urlParam =  location.search.substr(location.search.indexOf("?") + 1);
-            if(urlParam != ''){
-                urlParam = '?' + urlParam;
-            }
-            
-            //loadChk 파라미터 값 변경
-            loadChange('loadChk', urlParam);
-            function loadChange(paramName, oldUrl) {
-                var newUrl;
-                var urlChk = new RegExp('[?&]'+paramName+'\\s*=');
-                var urlChk2 = new RegExp('(?:([?&])'+paramName+'\\s*=[^?&]*)')
-                newUrl = oldUrl.replace(urlChk2, "$1"+paramName+"=off");
-                history.pushState(null, null, newUrl);
-            }
-        }
+        
     }else{ //파라미터 값이 없으면 active 클래스 기준으로 탭메뉴 선택
         var activeChk = 0;
         $(".tab_wrap .tit_list > li").each(function(i) { 
