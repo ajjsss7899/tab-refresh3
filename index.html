@@ -91,7 +91,7 @@ function tab(){
             } else { //파라미터가 없을 때
                 newUrl = oldUrl + "?"+paramName+"=" + activeTab.substr(1);
             }
-            //history.pushState(null, null, newUrl);
+            history.pushState(null, null, newUrl);
         }
     });
 
