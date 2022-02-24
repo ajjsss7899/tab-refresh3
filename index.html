@@ -58,16 +58,16 @@ $(document).ready(function(){
 
 function tab(){
     //탭메뉴 클릭할 때 실행
-    $(".tab_wrap .tit_list > li a").on( "click", function(e) {
+    $('.tab_wrap .tit_list > li a').on('click', function(e) {
         e.preventDefault();
     
         //초기화
-        $(".tab_wrap .tit_list > li").removeClass("active");
-        $(".tab_wrap .tab_list").hide(); 
+        $('.tab_wrap .tit_list > li').removeClass('active');
+        $('.tab_wrap .tab_list').hide(); 
         
         //실행
-        $(this).parent().addClass("active"); 
-        var activeTab = $(this).attr("href");
+        $(this).parent().addClass('active'); 
+        var activeTab = $(this).attr('href');
         $(activeTab).show();
 
         //파라미터 확인
@@ -133,18 +133,38 @@ function tab(){
         }
     }else{ //파라미터 값이 없으면 active 클래스 기준으로 탭메뉴 선택
         var activeChk = 0;
-        $(".tab_wrap .tit_list > li").each(function(i) { 
-            if ($(this).hasClass("active")){
-                $(this).addClass("active"); 
-                $(this).find('a').trigger("click");
+        $('.tab_wrap .tit_list > li').each(function(i) { 
+            if ($(this).hasClass('active')){
+                $(this).addClass('active'); 
+                $(this).find('a').trigger('click');
                 activeChk ++
             }
         });
 
         //active 지정 안했을 시 첫 탭메뉴 선택
         if(activeChk == 0){
-            $(".tab_wrap .tit_list > li:first-child a").trigger("click");
+            $('.tab_wrap .tit_list > li:first-child a').trigger('click');
         }
+
+        //뒤로갔을 때 탭메뉴 복구
+        window.onpopstate = function(event) {
+            //초기화
+            $('.tab_wrap .tit_list > li').removeClass('active');
+            $('.tab_wrap .tab_list').hide(); 
+            var getParam2 = getParameter('tabName'); //선택한 탭 파라미터
+            console.log(getParam2)
+            //탭메뉴 열기
+            if(getParam2 != ''){
+                $('.tab_wrap .tit_list > li a[href="#'+getParam2+'"]').parent().addClass('active');
+                $('#'+getParam2).show()
+            }else{
+                $('.tab_wrap .tit_list > li:first-child').addClass('active');
+                $('.tab_wrap .tab_list:first-of-type').show();
+            }
+            
+        };
+
+
     }
 }
 
