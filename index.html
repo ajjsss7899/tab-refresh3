@@ -147,7 +147,7 @@ function tab(){
             $('.tab_wrap .tit_list > li:first-child a').trigger('click');
         }
 
-        //뒤로갔을 때 탭메뉴 복구
+        //뒤로가기 탭메뉴 복구
         window.onpopstate = function(event) {
             //초기화
             $('.tab_wrap .tit_list > li').removeClass('active');
@@ -162,10 +162,7 @@ function tab(){
                 $('.tab_wrap .tit_list > li:first-child').addClass('active');
                 $('.tab_wrap .tab_list:first-of-type').show();
             }
-            
         };
-
-
     }
 
     window.onpopstate = function(event) {  //뒤로가기 이벤트를 캐치합니다.
