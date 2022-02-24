@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -91,6 +91,7 @@ function tab(){
             } else { //파라미터가 없을 때
                 newUrl = oldUrl + "?"+paramName+"=" + activeTab.substr(1);
             }
+
             history.pushState(null, null, newUrl);
         }
     });
@@ -146,6 +147,14 @@ function tab(){
             $(".tab_wrap .tit_list > li:first-child a").trigger("click");
         }
     }
+
+    window.onpopstate = function(event) {  //뒤로가기 이벤트를 캐치합니다.
+        getParam = getParameter('tabName'); //선택한 탭 파라미터
+        $(".tab_wrap .tit_list > li").removeClass("active");
+        $(".tab_wrap .tab_list").hide(); 
+        $('.tab_wrap .tit_list > li a[href="#'+getParam+'"]').parent().addClass('active');
+        $('#'+getParam).show();
+    };
 }
 
 </script>
